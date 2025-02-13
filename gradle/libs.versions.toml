@@ -1,0 +1,34 @@
+[versions]
+agp = "8.8.0"
+coreKtx = "1.15.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+android-gradle-plugin = "8.8.0" # Change to match your AGP version
+kotlin = "1.9.25"
+composeVersion = "1.6.7"
+appcompat = "1.7.0"
+material = "1.12.0"
+foundationAndroid = "1.6.7" # Use a stable version
+composeActivityVersion = "1.10.0"
+lifecycleVersion = "2.6.1"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundationAndroid" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "composeVersion" }
+androidx-compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "composeVersion" }
+androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivityVersion" }
+androidx-compose-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "composeVersion" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.3.0" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "composeVersion" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
