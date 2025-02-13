@@ -1,12 +1,10 @@
 package com.example.pacepocfigma
 
-
 import android.os.Bundle
 import android.util.Patterns
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -15,6 +13,11 @@ import com.example.uilibrary.CustomTextInput
 import com.example.uilibrary.ButtonState
 import com.example.uilibrary.ButtonStyle
 import com.example.uilibrary.TextInputState
+import com.example.uilibrary.ActionLink
+import com.example.uilibrary.ActionLinkState
+import com.example.uilibrary.ActionLinkStyle
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,13 +30,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UpdateContactForm() {
-    // Pre-filled user information
+    var actionLinkState by remember { mutableStateOf(ActionLinkState.Default) }
+
     var fullName by remember { mutableStateOf("John Doe") }
     var email by remember { mutableStateOf("johndoe@example.com") }
     var phoneNumber by remember { mutableStateOf("1234567890") }
     var homeAddress by remember { mutableStateOf("123 Main St, City") }
 
-    // Store the initial values for detecting changes
     val initialFullName = "John Doe"
     val initialEmail = "johndoe@example.com"
     val initialPhoneNumber = "1234567890"
@@ -60,13 +63,7 @@ fun UpdateContactForm() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // Title
-        Text(
-            text = "Update Contact Information",
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
-        // Full Name Input
+        // Inputs
         CustomTextInput(
             label = "Full Name",
             placeholder = "Enter your full name",
@@ -76,7 +73,6 @@ fun UpdateContactForm() {
             onValueChange = { fullName = it }
         )
 
-        // Email Input
         CustomTextInput(
             label = "Email Address",
             placeholder = "Enter your email",
@@ -86,7 +82,6 @@ fun UpdateContactForm() {
             onValueChange = { email = it }
         )
 
-        // Phone Number Input
         CustomTextInput(
             label = "Phone Number",
             placeholder = "Enter your phone number",
@@ -96,7 +91,6 @@ fun UpdateContactForm() {
             onValueChange = { phoneNumber = it }
         )
 
-        // Home Address Input
         CustomTextInput(
             label = "Home Address",
             placeholder = "Enter your home address",
@@ -117,8 +111,19 @@ fun UpdateContactForm() {
             state = buttonState,
             style = ButtonStyle.Primary
         )
+
+        // Cancel Action Link (Stateless, controlled in parent)
+        ActionLink(
+            text = "Cancel",
+            state = actionLinkState,
+            style = ActionLinkStyle.Alternative,
+            onClick = {
+                actionLinkState = ActionLinkState.Pressed  // 🔹 Control state in parent
+            }
+        )
     }
 }
+
 
 private fun validateForm(
     fullName: String, email: String, phoneNumber: String, homeAddress: String,

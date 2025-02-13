@@ -55,10 +55,12 @@ dependencies {
 
     // Image Loading (using Coil)
     implementation(libs.coil.compose)
+    implementation(libs.androidx.material3.android)
 
     // Testing libraries
     testImplementation(libs.junit)  // Unit tests
     androidTestImplementation(libs.androidx.junit)  // UI tests with JUnit
     androidTestImplementation(libs.androidx.espresso.core)  // Espresso for UI tests
+
 
 }
